@@ -5,6 +5,17 @@ import QuoteView from './views/QuoteView/QuoteView';
 
 export default function App() {
   const [quotes, setQuotes] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [isFilter, setIsFilter] = useState(false);
+
+  const handleSearch = (search) => {
+    setIsFilter(!!search.length);
+    const filtered = quotes.filter(({ character }) =>
+      character.toLowerCase().includes(search.toLowerCase())
+    );
+    setFiltered(filtered);
+  };
+
   useEffect(() => {
     const fetch = async () => {
       const data = await fetchSimpsons();
@@ -15,8 +26,8 @@ export default function App() {
   return (
     <>
       <h1>Simpson Quotes</h1>
-      <Search />
-      <QuoteView {...{ quotes }} />
+      <Search handler={handleSearch} />
+      <QuoteView quotes={isFilter ? filtered : quotes} />
     </>
   );
 }

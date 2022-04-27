@@ -4,6 +4,6 @@ export const fetchSimpsons = async () => {
   const response = await fetch(
     `https://thesimpsonsquoteapi.glitch.me/quotes?${params.toString()}`
   );
-  const data = response.json();
+  const data = await response.json();
   return data;
 };
