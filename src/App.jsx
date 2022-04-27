@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import Search from './components/Search/Search';
 import { fetchSimpsons } from './services/simpsons';
+import QuoteView from './views/QuoteView/QuoteView';
 
 export default function App() {
   const [quotes, setQuotes] = useState([]);
@@ -10,5 +12,11 @@ export default function App() {
     };
     fetch();
   }, []);
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <h1>Simpson Quotes</h1>
+      <Search />
+      <QuoteView {...{ quotes }} />
+    </>
+  );
 }
