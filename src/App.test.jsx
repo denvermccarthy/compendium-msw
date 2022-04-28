@@ -8,9 +8,8 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('App is rendering properly', () => {
-  it('test', async () => {
+  it('app renders header, search bar and search bar is working properly ', async () => {
     render(<App />);
-    // render(<App />);
     //get h1
     const h1 = screen.getByRole('heading', { level: 1 });
     //check content
@@ -18,12 +17,9 @@ describe('App is rendering properly', () => {
 
     const loading = screen.getByText('loading....');
 
-    await waitForElementToBeRemoved(loading, { timeout: 5000 });
-    // render(<App />);
-    // check for element
+    await waitForElementToBeRemoved(loading);
 
     //check for name other than homer simpson
-    screen.debug();
     const margeOriginal = await screen.findByText(/marge simpson/i);
     //user event
 

@@ -3,6 +3,6 @@ export const fetchSimpsons = async () => {
     `https://thesimpsonsquoteapi.glitch.me/quotes?count=20`
   );
   const data = await response.json();
-  console.log(data);
   return data;
 };
+//
