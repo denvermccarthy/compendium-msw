@@ -3,10 +3,10 @@ import Quote from '../../components/Quote/Quote';
 
 export default function QuoteView({ quotes }) {
   return (
-    <div>
+    <ul>
       {quotes.map((quote) => (
         <Quote key={quote.quote} {...quote} />
       ))}
-    </div>
+    </ul>
   );
 }

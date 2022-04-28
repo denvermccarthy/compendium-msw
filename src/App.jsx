@@ -7,6 +7,16 @@ export default function App() {
   const [quotes, setQuotes] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await fetchSimpsons();
+      setQuotes(data);
+      setLoading(false);
+    };
+    fetch();
+  }, []);
 
   const handleSearch = (search) => {
     setIsFilter(!!search.length);
@@ -15,19 +25,15 @@ export default function App() {
     );
     setFiltered(filtered);
   };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await fetchSimpsons();
-      setQuotes(data);
-    };
-    fetch();
-  }, []);
   return (
     <>
       <h1>Simpson Quotes</h1>
       <Search handler={handleSearch} />
-      <QuoteView quotes={isFilter ? filtered : quotes} />
+      {loading ? (
+        <div>loading....</div>
+      ) : (
+        <QuoteView quotes={isFilter ? filtered : quotes} />
+      )}
     </>
   );
 }

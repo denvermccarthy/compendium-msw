@@ -9,7 +9,12 @@ export default function Search({ handler }) {
   return (
     <label>
       Search
-      <input value={search} onChange={handleSearch} type="text" />
+      <input
+        value={search}
+        onChange={handleSearch}
+        type="text"
+        placeholder="enter a name here"
+      />
     </label>
   );
 }
